@@ -10,7 +10,8 @@ pygame.init()
 
 class _Game(object):
     def __init__(self):
-        self.window = Window(800, 600)
+        self.defaults = Defaults()
+        self.window = Window(self.defaults.resolution.x, self.defaults.resolution.y)
         self.input = _Input()
         self.activeScene = None
         return
@@ -23,25 +24,58 @@ class _Game(object):
     def loadScene(self, scene):
         if scene is not None:
             self.activeScene = scene()
-            self.activeScene.onStart(self)
+            if self.defaults.fullscreen:
+                self.window.set_fullscreen()
+            self.activeScene.onStart()
         return
 
     def update(self):
         if self.activeScene is not None:
-            self.activeScene.onUpdate(self)
+            if len(self.activeScene.toDestroy) > 0:
+                self.activeScene.objects = filter(lambda o: o.destroyed is not True, self.activeScene.objects)
+
+            self.activeScene.onUpdate()
             for obj in self.activeScene.objects:
-                obj.baseUpdate(self)
+                obj.baseUpdate()
 
         self.input.update()
         return
 
     def draw(self):
         if self.activeScene is not None:
-            self.window.set_background_color((self.activeScene.backgroundColor[0], self.activeScene.backgroundColor[1], self.activeScene.backgroundColor[2]))
-            self.activeScene.onDraw(self)
+            bgColor = self.activeScene.backgroundColor
+            self.window.set_background_color((bgColor[0], bgColor[1], bgColor[2]))
+
+            self.activeScene.onDraw()
+
+            camera = self.activeScene.camera
+
             for obj in self.activeScene.objects:
-                obj.baseDraw(self)
+                if not isinstance(obj, GameUI):
+                    #check if object is inside the screen
+                    if obj.position.x + obj.size.x > camera.position.x and obj.position.x < camera.position.x + camera.getSize().x and obj.position.y + obj.size.y > camera.position.y and obj.position.y < camera.position.y + camera.getSize().y:
+                        realPos = obj.position
+
+                        #Calculate camera-based position
+                        obj.position = obj.position.sumWith(self.activeScene.camera.position.byScalar(-1))
+
+                        obj.baseDraw()
+
+                        #Restore real position
+                        obj.position = realPos
+                else:
+                    obj.baseDraw()
         return
+
+    def setFullscreen(self, boolean):
+        if boolean:
+            self.window.set_fullscreen()
+        else:
+            self.window.restoreScreen()
+        return
+
+    def getFullscreen(self):
+        return self.window.fullscreen_enabled
 
     def loop(self):
         while True:
@@ -49,11 +83,10 @@ class _Game(object):
             self.draw()
             self.window.update()
 
-    def instantiate(self, obj, x, y):
+    def instantiate(self, obj, position):
         if self.activeScene is not None:
             o = obj()
-            o.x = x
-            o.y = y
+            o.position = position.clone()
             self.activeScene.objects.append(o)
             return o
         else:
@@ -63,51 +96,59 @@ class _Game(object):
         self.window.set_title(text)
         return
 
+    def setDefaults(self, defaults):
+        self.defaults = defaults
+        self.window.set_resolution(self.defaults.resolution.x, self.defaults.resolution.y)
+        self.setFullscreen(self.defaults.fullscreen)
+        return
+
 
 class GameObject(object):
     def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.width = 0
-        self.height = 0
-        self.vspeed = 0
-        self.hspeed = 0
+        self.position = Vector2.zero()
+        self.size = Vector2.zero()
+        self.velocity = Vector2.zero()
         self.sprite = None
+        self.destroyed = False
         return
 
     def base(self):
         GameObject.__init__(self)
         return
 
+    def __str__(self):
+        return str(self.__class__.__name__)
+
     def setSprite(self, name):
-        if name == None:
+        if name is None:
             self.sprite = None
-            self.width = 0
-            self.height = 0
+            self.size = Vector2.zero()
         else:
             self.sprite = Sprite(name + ".png")
-            self.width = self.sprite.width
-            self.height = self.sprite.height
+            self.size = Vector2(self.sprite.width, self.sprite.height)
 
-    def onUpdate(self, game):
+    def onUpdate(self):
         return
 
-    def onDraw(self, game):
+    def onDraw(self):
         return
 
-    def baseUpdate(self, game):
-        self.onUpdate(game)
-
-        self.x += self.hspeed
-        self.y += self.vspeed
+    def baseUpdate(self):
+        self.onUpdate()
+        self.position = self.position.sumWith(self.velocity)
         return
 
-    def baseDraw(self, game):
+    def baseDraw(self):
         if self.sprite is not None:
-            self.sprite.set_position(self.x, self.y)
+            self.sprite.set_position(self.position.x, self.position.y)
             self.sprite.draw()
 
-        self.onDraw(game)
+        self.onDraw()
+        return
+
+    def destroy(self):
+        self.destroyed = True
+        Game.activeScene.toDestroy.append(self)
         return
 
 
@@ -122,21 +163,21 @@ class GameUI(GameObject):
         GameUI.__init__(self)
         return
 
-    def baseUpdate(self, game):
+    def baseUpdate(self):
         if self.draggable:
-            if Input.GetMouseButtonDown(0) and self.x <= Input.mousePosition[0] < self.x + self.width and self.y <= \
-                    Input.mousePosition[1] < self.y + self.height:
+            if Input.GetMouseButtonDown(0) and self.position.x <= Input.mousePosition.x < self.position.x + self.size.x and self.position.y <= \
+                    Input.mousePosition.y < self.position.y + self.size.y:
                 self.isDragging = True
             elif self.isDragging and Input.GetMouseButtonUp(0):
                 self.isDragging = False
 
             if self.isDragging:
-                self.hspeed = 0
-                self.vspeed = 0
-                self.x = Input.mousePosition[0] - self.width/2
-                self.y = Input.mousePosition[1] - self.height/2
+                self.velocity = Vector2.zero()
+                self.position = Input.mousePosition.sumWith(self.size.byScalar(-0.5))
+                # self.position.x = Input.mousePosition.x - self.size.x / 2
+                # self.position.y = Input.mousePosition.y - self.size.y / 2
 
-        GameObject.baseUpdate(self, game)
+        GameObject.baseUpdate(self)
 
 
 class TextUI(GameUI):
@@ -151,18 +192,17 @@ class TextUI(GameUI):
         TextUI.__init__(self)
         return
 
-    def baseDraw(self, game):
+    def baseDraw(self):
         if self.font is not None:
             surface = self.font.render(self.text, True, self.color)
-            rect = pygame.Rect(self.x, self.y, self.width, self.height)
-            game.window.get_screen().blit(surface, rect)
+            rect = pygame.Rect(self.position.x, self.position.y, self.size.x, self.size.y)
+            Game.window.get_screen().blit(surface, rect)
         return
 
     def setText(self, text):
         self.text = text
         size = self.font.size(self.text)
-        self.width = size[0]
-        self.height = size[1]
+        self.size = Vector2(size[0], size[1])
         return
 
     def setColor(self, color):
@@ -170,35 +210,46 @@ class TextUI(GameUI):
         return
 
 
+class Camera(object):
+    def __init__(self, position):
+        self.position = position.clone()
+        return
+
+    def getSize(self):
+        return Vector2(Game.window.width, Game.window.height)
+
+
 class Scene(object):
     def __init__(self):
-        self.backgroundColor = [0, 0, 0]
+        self.backgroundColor = (0, 0, 0)
         self.objects = []
+        self.toDestroy = []
+        self.camera = Camera(Vector2.zero())
         return
 
     def base(self):
         Scene.__init__(self)
         return
 
-    def onStart(self, game):
+    def onStart(self):
         return
 
-    def onUpdate(self, game):
+    def onUpdate(self):
         return
 
-    def onDraw(self, game):
+    def onDraw(self):
         return
 
-    def baseStart(self, game):
-        self.onStart(game)
+    def baseStart(self):
+        self.onStart()
         return
 
-    def baseUpdate(self, game):
-        self.onUpdate(game)
+    def baseUpdate(self):
+        self.onUpdate()
         return
 
-    def baseDraw(self, game):
-        self.onDraw(game)
+    def baseDraw(self):
+        self.onDraw()
         return
 
 
@@ -209,12 +260,16 @@ class _Input(object):
 
         self.lastKeys = pygame.key.get_pressed()
         self.lastMouseButtons = [pygame.mouse.get_pressed()] * 2
-        self.mousePosition = self.mouse.get_position()
+
+        mPos = self.mouse.get_position()
+        self.mousePosition = Vector2(mPos[0], mPos[1])
         return
 
     def update(self):
         self.lastKeys = pygame.key.get_pressed()
-        self.mousePosition = self.mouse.get_position()
+
+        mPos = self.mouse.get_position()
+        self.mousePosition = Vector2(mPos[0], mPos[1])
 
         self.lastMouseButtons[1] = self.lastMouseButtons[0]
         self.lastMouseButtons[0] = pygame.mouse.get_pressed()
@@ -251,6 +306,45 @@ class _Random(object):
             return random.uniform(float(min), float(max))
         else:
             return random.randint(min, max)
+
+
+class Vector2():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+        return
+
+    def sumWith(self, vector2):
+        clone = self.clone()
+        if vector2 is not None:
+            clone.x += vector2.x
+            clone.y += vector2.y
+        return clone
+
+    def byScalar(self, factor):
+        clone = self.clone()
+        if factor is not None:
+            clone.x *= factor
+            clone.y *= factor
+        return clone
+
+    def clone(self):
+        return Vector2(self.x, self.y)
+
+    def __str__(self):
+        return "(" + str(self.x) + ", " + str(self.y) + ")"
+
+    @staticmethod
+    def zero():
+        return Vector2(0, 0)
+
+
+class Defaults():
+    def __init__(self):
+        self.resolution = Vector2(800, 600)
+        self.fullscreen = False
+        return
+
 
 KeyCode = _KeyCode()
 Game = _Game()

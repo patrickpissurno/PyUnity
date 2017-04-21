@@ -26,10 +26,8 @@
       <file leaf-file-name="game.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="35" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.5555556" vertical-offset="714" max-vertical-offset="1479">
-              <folding>
-                <element signature="e#0#44#0" expanded="true" />
-              </folding>
+            <state line="83" column="14" selection-start="2138" selection-end="2138" vertical-scroll-proportion="0.49322492" vertical-offset="996" max-vertical-offset="1734">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -37,7 +35,7 @@
       <file leaf-file-name="pyunity.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pyunity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4488">
+            <state line="66" column="34" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.0" vertical-offset="507" max-vertical-offset="6086">
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -60,6 +58,8 @@
         <option value="$PROJECT_DIR$/libgame.py" />
         <option value="$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/580531057/__builtin__.py" />
         <option value="$PROJECT_DIR$/pyunity.py" />
+        <option value="D:/Program Files (x86)/PPlay/App/Lib/PPlay/window.py" />
+        <option value="E:/Programs/PPlay/window.py" />
         <option value="$PROJECT_DIR$/game.py" />
       </list>
     </option>
@@ -96,6 +96,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -116,13 +117,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="FullScreen" value="false" />
-    <property name="options.lastSelected" value="appearance" />
+    <property name="options.lastSelected" value="editor.preferences.appearance" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -353,24 +353,24 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982087" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1421875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1421875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771337" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19494204" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -393,64 +393,67 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="714">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+        <state line="70" column="35" selection-start="1729" selection-end="1729" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1479">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyunity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="0" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="1938">
+        <state line="136" column="39" selection-start="3454" selection-end="3454" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="4488">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="35" selection-start="800" selection-end="800" vertical-scroll-proportion="0.0" vertical-offset="595" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="14" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="714">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="14" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="714">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyunity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="108" column="0" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="1938">
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/Program Files (x86)/PPlay/App/Lib/PPlay/window.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="0" selection-start="5935" selection-end="5935" vertical-scroll-proportion="0.4722222" vertical-offset="2618" max-vertical-offset="3230">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/keycode.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="46" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.21776815" vertical-offset="275" max-vertical-offset="2074">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/.PyCharm30/system/python_stubs/580531057/__builtin__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="922" column="0" selection-start="30744" selection-end="30744" vertical-scroll-proportion="0.33333334" vertical-offset="15470" max-vertical-offset="87550">
+        <state line="29" column="22" selection-start="1141" selection-end="1141" vertical-scroll-proportion="0.33333334" vertical-offset="247" max-vertical-offset="87550">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/Programs/PPlay/window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="37" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.6314363" vertical-offset="1302" max-vertical-offset="3927">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/Program Files (x86)/PPlay/App/Lib/PPlay/window.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="28" selection-start="3204" selection-end="3204" vertical-scroll-proportion="0.2303523" vertical-offset="1513" max-vertical-offset="4012">
+          <folding>
+            <element signature="e#45#55#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pyunity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4488">
+        <state line="66" column="34" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.0" vertical-offset="507" max-vertical-offset="6086">
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
@@ -459,10 +462,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="35" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.5555556" vertical-offset="714" max-vertical-offset="1479">
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
+        <state line="83" column="14" selection-start="2138" selection-end="2138" vertical-scroll-proportion="0.49322492" vertical-offset="996" max-vertical-offset="1734">
+          <folding />
         </state>
       </provider>
     </entry>
